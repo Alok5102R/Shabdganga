@@ -7,8 +7,8 @@ Welcome to Release Reads, your premier destination for the grand unveiling of li
 
 - ReactJS
 - TailwindCSS
-- NodeJS
-- MongoDB
-- ExpressJS
+- MySQL
+- Django
+- Python
 - JavaScript
 - HTML
