@@ -21,8 +21,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-<<<<<<< HEAD
 .venv/
 __pycache__/
-=======
->>>>>>> e162e1b832f429ce07a07224b00236557cda683d
