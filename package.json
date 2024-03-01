@@ -10,11 +10,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.22.2",
-<<<<<<< HEAD
-=======
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.8",
->>>>>>> e162e1b832f429ce07a07224b00236557cda683d
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -44,10 +41,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.17",
     "postcss": "^8.4.35",
-<<<<<<< HEAD
     "react-scripts": "^5.0.1",
-=======
->>>>>>> e162e1b832f429ce07a07224b00236557cda683d
     "tailwindcss": "^3.4.1"
   }
 }

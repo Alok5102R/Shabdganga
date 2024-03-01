@@ -1,8 +1,5 @@
 @tailwind base;
 @tailwind components;
-<<<<<<< HEAD
-@tailwind utilities;
-=======
 @tailwind utilities;
 
 @media only screen and (max-width: 640px) {
@@ -18,4 +15,3 @@
     
   }
   }
->>>>>>> e162e1b832f429ce07a07224b00236557cda683d
