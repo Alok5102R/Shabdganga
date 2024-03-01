@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media only screen and (max-width: 640px) {
+   .latest{
+    display: none;
+   }
+  .left-side{
+   left: 25px;
+  }
+  .nav-lg{
+    
+    display: none;
+    
+  }
+  }
