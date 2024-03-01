@@ -5,6 +5,8 @@ import { useState,useEffect } from 'react';
 
 
 function App() {
+
+        const [data,setData] = useState([])
         async function fetchData() {
                 try {
                     const res = await fetch('http://127.0.0.1:8000/books/api/userapi/');
