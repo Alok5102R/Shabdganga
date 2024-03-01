@@ -1,5 +1,9 @@
 import React from 'react';
 import Slider from '../components/Slider';
+<<<<<<< HEAD
+=======
+import HomeContent from '../components/HomeContent';
+>>>>>>> e162e1b832f429ce07a07224b00236557cda683d
 import cover1 from '../images/cover1.jpg';
 import cover2 from '../images/cover2.jpg';
 import cover3 from '../images/cover3.png';
@@ -24,8 +28,16 @@ const images = [
   
 function Home() {
   return (
+<<<<<<< HEAD
     <div className="container mx-auto my-">
       <Slider images={images} />
+=======
+    <div className="container mx-auto ">
+      <Slider images={images} />
+      <HomeContent/>
+     
+
+>>>>>>> e162e1b832f429ce07a07224b00236557cda683d
     </div>
   );
 }
