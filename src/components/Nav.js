@@ -6,7 +6,7 @@ import user from '../images/user.png'
 
 
 
-function Nav() {
+function Nav({username}) {
   return (
     <div>
          <nav className="bg-gray-900 p-4 ">
@@ -20,6 +20,11 @@ function Nav() {
                     <div className="flex items-center gap-8">
                     <img src={user} alt="User" className="w-10 h-10 rounded-full" />
                         <button className="text-white hover:text-gray-300 mr-4">Sign In</button>
+
+                        {/* triel */}
+                        <button className="text-white hover:text-gray-300 mr-4">{username}</button>
+
+
                         <button className="text-white hover:text-gray-300 mr-4">Sign Up</button>
                         <ul className="flex space-x-4">
                             <li><a href="#" className="text-white hover:text-gray-300">FAQ</a></li>

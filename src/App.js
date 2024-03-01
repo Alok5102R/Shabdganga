@@ -24,10 +24,17 @@ function App() {
             useEffect(() => {
                 console.log(data); 
             }, [data]); 
+
+       const username =  data.map((item) => 
+            <div> {item.username} </div>
+            )
+
+
+
   return (
     <div>
         
-        <Nav />
+        <Nav username={username}/>
       
         <Home/>
     </div>
