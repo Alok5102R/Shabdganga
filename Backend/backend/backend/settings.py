@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'books',
 ]
 
-CORS_ALLOWED_ORIGINS = ['localhost:3000']
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
