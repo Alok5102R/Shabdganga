@@ -11,7 +11,7 @@ function Nav({setIsModalOpen}) {
     const navigate = useNavigate();
   return (
     <div>
-         <nav className="bg-gray-900 p-4 ">
+         <nav className="bg-gray-900 p-4 font-serif">
                 <div className=" nav-lg  mx-auto flex justify-between items-center">
                     <div className="flex items-center">
                         {/* Logo */}
@@ -22,6 +22,7 @@ function Nav({setIsModalOpen}) {
                     <div className="flex items-center gap-8">
                         <img src={user} alt="User" className="w-10 h-10 rounded-full" onClick={()=>navigate("/UserProfile")}/>
 
+                        <button className="text-white hover:text-gray-300 mr-4" onClick={() => navigate("/")}>Home</button>
                         <button className="text-white hover:text-gray-300 mr-4" onClick={()=>setIsModalOpen(true)}>Sign In</button>
                         <button className="text-white hover:text-gray-300 mr-4"  onClick={() => navigate("/SignUp")}>Sign Up</button>
                         <button className="text-white hover:text-gray-300 mr-4"  onClick={() => navigate("/FAQ")}>FAQ</button>
