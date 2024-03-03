@@ -2,4 +2,3 @@
 djangorestframework
 django-cors-headers
 python-dotenv
-python==3.9
