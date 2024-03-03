@@ -12,6 +12,8 @@ import cover8 from '../images/cover8.jpg';
 import SignUp from './SignUp';
 import UserProfile from './UserProfile';
 import UploadBook from './UploadBook';
+import FAQ from './FAQ.js'
+
 
 
 const images = [
@@ -32,7 +34,8 @@ function Home() {
     
       {/* <Slider images={images} />
       <HomeContent/> */}
-     <UploadBook/>
+     
+     
      
    
       
