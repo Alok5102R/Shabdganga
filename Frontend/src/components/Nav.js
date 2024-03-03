@@ -2,33 +2,31 @@ import React from 'react';
 import { HiOutlineBookOpen } from "react-icons/hi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import user from '../images/user.png'
+import { useNavigate } from 'react-router-dom';
 
 
 
 
-function Nav({username}) {
+function Nav({setIsModalOpen}) {
+    const navigate = useNavigate();
   return (
     <div>
-         <nav className="bg-gray-900 p-4 ">
+         <nav className="bg-gray-900 p-4 font-serif">
                 <div className=" nav-lg  mx-auto flex justify-between items-center">
                     <div className="flex items-center">
                         {/* Logo */}
-                        <a href="#" className="text-white font-bold text-6xl mr-4"><HiOutlineBookOpen /></a>
+                        <a href="" className="text-white font-bold text-6xl mr-4" onClick={()=>navigate("/")}><HiOutlineBookOpen /></a>
                         {/* Navbar links */}
                     
                     </div>
                     <div className="flex items-center gap-8">
-                    <img src={user} alt="User" className="w-10 h-10 rounded-full" />
-                        <button className="text-white hover:text-gray-300 mr-4">Sign In</button>
+                        <img src={user} alt="User" className="w-10 h-10 rounded-full" onClick={()=>navigate("/UserProfile")}/>
 
-                        {/* triel */}
-                        <button className="text-white hover:text-gray-300 mr-4">{username}</button>
-
-
-                        <button className="text-white hover:text-gray-300 mr-4">Sign Up</button>
-                        <ul className="flex space-x-4">
-                            <li><a href="#" className="text-white hover:text-gray-300">FAQ</a></li>
-                        </ul>
+                        <button className="text-white hover:text-gray-300 mr-4" onClick={() => navigate("/")}>Home</button>
+                        <button className="text-white hover:text-gray-300 mr-4" onClick={()=>setIsModalOpen(true)}>Sign In</button>
+                        <button className="text-white hover:text-gray-300 mr-4"  onClick={() => navigate("/SignUp")}>Sign Up</button>
+                        <button className="text-white hover:text-gray-300 mr-4"  onClick={() => navigate("/FAQ")}>FAQ</button>
+                        
                     
                     </div>
                 </div>

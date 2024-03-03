@@ -48,7 +48,7 @@ function HomeContent() {
   return (
     <div className=' flex'>
     {/* left side */}
-        <div className='left-side box-border relative top-14 flex-wrap gap-6 w-[70%] p-4 '>
+        <div className='left-side  relative top-14 flex-wrap gap-6 w-[70%] p-4 '>
         <BookCard Books={Books}/>
          
         </div>
@@ -61,7 +61,7 @@ function HomeContent() {
             {
                 Latest.map((book,index)=>(
                     <div key={index} >
-                        <div className='h-74 w-48  font-serif  flex flex-col justify-center items-center text-center animate-pulse'>
+                        <div className='h-74 w-48  font-serif  flex flex-col justify-center items-center text-center animate'>
 
                         <img src={book.img} alt='' 
                             className='h-56 '
