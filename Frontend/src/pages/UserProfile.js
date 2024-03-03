@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function UserProfile({ username, email, firstName, lastName, mobileNumber, gender }) {
   const [newUsername, setNewUsername] = useState(username);
@@ -54,6 +55,9 @@ function UserProfile({ username, email, firstName, lastName, mobileNumber, gende
     setNewGender(event.target.value);
   };
 
+
+
+  const navigate = useNavigate()
   return (
     <div className='flex justify-around m-16'>
 
@@ -111,8 +115,9 @@ function UserProfile({ username, email, firstName, lastName, mobileNumber, gende
             </div>
 
       {/* right side - */}
-            <div className='flex flex-col   text-2xl gap-8 mt-48'>
+            <div className='flex flex-col   text-2xl gap-8 mt-24'>
             <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onClick={handleEditClick}>Edit Details</button>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onClick={()=>navigate("/UploadBook")}>Publish New Book</button> 
             <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Manage Books</button> 
             <button className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-blue-600">Logout</button>   
             </div>

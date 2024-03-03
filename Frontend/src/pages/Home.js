@@ -34,6 +34,7 @@ function Home() {
     
       {/* <Slider images={images} />
       <HomeContent/> */}
+      <HomeContent/>
      
      
      

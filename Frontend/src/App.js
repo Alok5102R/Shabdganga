@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import Nav from './components/Nav';
 import Home from './pages/Home';
+import { Route,Routes,} from 'react-router-dom'
+import SignUp from './pages/SignUp';
+import UploadBook from './pages/UploadBook';
+import UserProfile from './pages/UserProfile';
+import FAQ from './pages/FAQ';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // const Modal = () => {
-  //   setIsModalOpen(true ?  isModalOpen : false);
-  // };
+  
 
   return (
     <div>
@@ -33,7 +36,17 @@ function App() {
 
       <Nav setIsModalOpen={setIsModalOpen} />
 
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="/SignUp" element={<SignUp/>} />
+        <Route path="/UploadBooks" element={<UploadBook/>} />
+        <Route path="/UserProfile" element={<UserProfile/>} />
+        <Route path="/FAQ" element={<FAQ/>} />
+        <Route path="/UploadBook" element={<UploadBook/>} />
+
+    </Routes>
+  
+     
     </div>
   );
 }
