@@ -26,12 +26,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: |
+    - name: Install Dependencies and Build
+      run: |
         cd Frontend
-        npm ci
-    - run: |
-        cd Frontend
+        npm install
         npm run build --if-present
-    - run: |
+    - name: Run Tests
+      run: |
         cd Frontend
         npm test
