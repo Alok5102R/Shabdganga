@@ -15,3 +15,32 @@
     
   }
   }
+
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    border: 2px solid #ffffff59;
+    width: 500px;
+    scale: 1;
+    background: #00000088;
+    backdrop-filter: blur(10px);
+    color: white;
+    z-index: 1;
+    padding: 20px 25px;
+    border-radius: 20px;
+    transition: 0.5s ease-in-out;
+  }
+  .overlay {
+    position: fixed;
+    background-color: #5f5f5f83;
+    top: 0;
+    opacity: 1;
+    height: 100vh;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: initial;
+    transition: 0.5s ease-in-out;
+  }
