@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Nav from './components/Nav';
 import Home from './pages/Home';
 import { Route,Routes,} from 'react-router-dom'
@@ -7,11 +7,37 @@ import UploadBook from './pages/UploadBook';
 import UserProfile from './pages/UserProfile';
 import FAQ from './pages/FAQ';
 
+
+
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [data, setData] = useState([]);
+
+      async function fetchData() {
+        try {
+          const res = await fetch('http://127.0.0.1:8000/books/api/userapi/	');
+          const apiData = await res.json();
+          setData(apiData);
+
+        } catch (err) {
+          console.log(err);
+        }
+      }
+
+      useEffect(() => {
+        fetchData();
+      }, []); 
+
+      useEffect(() => {
+        console.log(data); 
+      }, [data]); 
+
+      const username = data.map((item)=> item.username)
+      
+
+
 
   
-
   return (
     <div>
       {isModalOpen && (
@@ -34,7 +60,7 @@ function App() {
       
       
 
-      <Nav setIsModalOpen={setIsModalOpen} />
+      <Nav setIsModalOpen={setIsModalOpen} username={username} />
 
       <Routes>
         <Route path="/" element={<Home/>} />

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function Nav({setIsModalOpen}) {
+function Nav({setIsModalOpen,username}) {
     const navigate = useNavigate();
   return (
     <div>
@@ -21,6 +21,8 @@ function Nav({setIsModalOpen}) {
                     </div>
                     <div className="flex items-center gap-8">
                         <img src={user} alt="User" className="w-10 h-10 rounded-full" onClick={()=>navigate("/UserProfile")}/>
+                          
+                        <button className="text-white hover:text-gray-300 mr-4" onClick={() => navigate("/")}>{username}</button>
 
                         <button className="text-white hover:text-gray-300 mr-4" onClick={() => navigate("/")}>Home</button>
                         <button className="text-white hover:text-gray-300 mr-4" onClick={()=>setIsModalOpen(true)}>Sign In</button>
