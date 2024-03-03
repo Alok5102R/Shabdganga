@@ -67,13 +67,13 @@ function UserProfile({ username, email, firstName, lastName, mobileNumber, gende
             {isEditing ? (
         <div>
         <label className="block mb-2">
-            First Name:
+            Full Name:
             <input className="form-input border-2 mt-1 block " type="text" value={newFirstName} onChange={handleChangeFirstName} />
           </label>
-          <label className="block mb-2">
+          {/* <label className="block mb-2">
             Last Name:
             <input className="form-input border-2 mt-1 block " type="text" value={newLastName} onChange={handleChangeLastName} />
-          </label>
+          </label> */}
           <label className="block mb-2">
             Username:
             <input className="form-input border-2 mt-1 block " type="text" value={newUsername} onChange={handleChangeUsername} />

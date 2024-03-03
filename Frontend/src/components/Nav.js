@@ -2,6 +2,7 @@ import React from 'react';
 import { HiOutlineBookOpen } from "react-icons/hi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import user from '../images/user.png'
+
 import { useNavigate } from 'react-router-dom';
 
 
@@ -22,7 +23,7 @@ function Nav({setIsModalOpen,username}) {
                     <div className="flex items-center gap-8">
                         <img src={user} alt="User" className="w-10 h-10 rounded-full" onClick={()=>navigate("/UserProfile")}/>
                           
-                        <button className="text-white hover:text-gray-300 mr-4" onClick={() => navigate("/")}>{username}</button>
+                        <button className="text-white hover:text-gray-300 mr-4" onClick={() => navigate("/UserProfile")}>{username}</button>
 
                         <button className="text-white hover:text-gray-300 mr-4" onClick={() => navigate("/")}>Home</button>
                         <button className="text-white hover:text-gray-300 mr-4" onClick={()=>setIsModalOpen(true)}>Sign In</button>

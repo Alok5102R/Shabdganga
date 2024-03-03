@@ -62,6 +62,7 @@ function App() {
 
       <Nav setIsModalOpen={setIsModalOpen} username={username} />
 
+
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/SignUp" element={<SignUp/>} />
