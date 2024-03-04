@@ -17,7 +17,7 @@ function UserProfile({ username, email, fullname, mobileNumber, gender }) {
 
 
 
-  const handleSaveClick = () => {
+  const handleSaveClick = ({data}) => {
     // Here you can add your logic to save the updated information, e.g., make an API call
     // After saving, you can set isEditing to false to exit the editing mode
     setIsEditing(false);
@@ -58,6 +58,7 @@ function UserProfile({ username, email, fullname, mobileNumber, gender }) {
 
 
   const navigate = useNavigate()
+
   return (
     <div className='flex justify-around m-16'>
 
@@ -118,7 +119,7 @@ function UserProfile({ username, email, fullname, mobileNumber, gender }) {
             <div className='flex flex-col   text-2xl gap-8 mt-24'>
             <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onClick={handleEditClick}>Edit Details</button>
             <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onClick={()=>navigate("/UploadBook")}>Publish New Book</button> 
-            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Manage Books</button> 
+            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 " onClick={()=>navigate("/ManageBooks")}>Manage Books</button> 
             <button className="bg-gray-800 text-white px-4 py-2 rounded hover:bg-blue-600">Logout</button>   
             </div>
     </div>

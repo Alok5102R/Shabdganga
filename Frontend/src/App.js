@@ -6,6 +6,8 @@ import SignUp from './pages/SignUp';
 import UploadBook from './pages/UploadBook';
 import UserProfile from './pages/UserProfile';
 import FAQ from './pages/FAQ';
+import ManageBooks from './pages/ManageBooks';
+import ViewBook from './pages/ViewBook';
 
 
 
@@ -33,6 +35,8 @@ function App() {
       }, [data]); 
 
       const username = data.map((item)=> item.username)
+      const fullname = data.map((item)=> item.fullname)
+      const email = data.map((item)=> item.email)
       
 
 
@@ -67,9 +71,11 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/SignUp" element={<SignUp/>} />
         <Route path="/UploadBooks" element={<UploadBook/>} />
-        <Route path="/UserProfile" element={<UserProfile/>} />
+        <Route path="/UserProfile" element={<UserProfile username={username} email={email} fullname={fullname}/>} />
         <Route path="/FAQ" element={<FAQ/>} />
         <Route path="/UploadBook" element={<UploadBook/>} />
+        <Route path="/ManageBooks" element={<ManageBooks/>} />
+        <Route path="/ViewBook" element={<ViewBook/>} />
 
     </Routes>
   

@@ -13,6 +13,9 @@ import SignUp from './SignUp';
 import UserProfile from './UserProfile';
 import UploadBook from './UploadBook';
 import FAQ from './FAQ.js'
+import ManageBookCard from '../components/ManageBookCard.js';
+import ManageBooks from './ManageBooks.js';
+import ViewBook from './ViewBook.js';
 
 
 
@@ -34,7 +37,7 @@ function Home() {
     
       {/* <Slider images={images} />
       <HomeContent/> */}
-      <HomeContent/>
+     <HomeContent/>
      
      
      
