@@ -14,6 +14,9 @@ function UserProfile({ username, email, firstName, lastName, mobileNumber, gende
     setIsEditing(true);
   };
 
+
+
+
   const handleSaveClick = () => {
     // Here you can add your logic to save the updated information, e.g., make an API call
     // After saving, you can set isEditing to false to exit the editing mode

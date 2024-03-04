@@ -2,7 +2,7 @@ import React from 'react';
 import { HiOutlineBookOpen } from "react-icons/hi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import user from '../images/user.png'
-
+import logo from '../images/logo-ShabdGanga/logo-1.png'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -16,7 +16,9 @@ function Nav({setIsModalOpen,username}) {
                 <div className=" nav-lg  mx-auto flex justify-between items-center">
                     <div className="flex items-center">
                         {/* Logo */}
-                        <a href="" className="text-white font-bold text-6xl mr-4" onClick={()=>navigate("/")}><HiOutlineBookOpen /></a>
+                        {/* <a href="" className="text-white font-bold text-6xl mr-4" onClick={()=>navigate("/")}><HiOutlineBookOpen /></a> */}
+                        <img src={logo} alt="User" className=" w-80 h-20 object-cover  relative left-[-40px]" onClick={()=>navigate("/UserProfile")}/>
+
                         {/* Navbar links */}
                     
                     </div>
