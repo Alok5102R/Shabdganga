@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function UserProfile({ username, email, firstName, lastName, mobileNumber, gender }) {
+function UserProfile({ username, email, fullname, mobileNumber, gender }) {
   const [newUsername, setNewUsername] = useState(username);
   const [newEmail, setNewEmail] = useState(email);
-  const [newFirstName, setNewFirstName] = useState(firstName);
-  const [newLastName, setNewLastName] = useState(lastName);
+  const [newFullName, setNewFullName] = useState(fullname);
+ 
   const [newMobileNumber, setNewMobileNumber] = useState(mobileNumber);
   const [newGender, setNewGender] = useState(gender);
   const [isEditing, setIsEditing] = useState(false);
@@ -27,8 +27,7 @@ function UserProfile({ username, email, firstName, lastName, mobileNumber, gende
     // If the user cancels editing, revert changes to the original values
     setNewUsername(username);
     setNewEmail(email);
-    setNewFirstName(firstName);
-    setNewLastName(lastName);
+    setNewFullName(fullname);
     setNewMobileNumber(mobileNumber);
     setNewGender(gender);
     setIsEditing(false);
@@ -42,13 +41,11 @@ function UserProfile({ username, email, firstName, lastName, mobileNumber, gende
     setNewEmail(event.target.value);
   };
 
-  const handleChangeFirstName = (event) => {
-    setNewFirstName(event.target.value);
+  const handleChangeFullName = (event) => {
+    setNewFullName(event.target.value);
   };
 
-  const handleChangeLastName = (event) => {
-    setNewLastName(event.target.value);
-  };
+
 
   const handleChangeMobileNumber = (event) => {
     setNewMobileNumber(event.target.value);
@@ -71,7 +68,7 @@ function UserProfile({ username, email, firstName, lastName, mobileNumber, gende
         <div>
         <label className="block mb-2">
             Full Name:
-            <input className="form-input border-2 mt-1 block " type="text" value={newFirstName} onChange={handleChangeFirstName} />
+            <input className="form-input border-2 mt-1 block " type="text" value={newFullName} onChange={handleChangeFullName} />
           </label>
           {/* <label className="block mb-2">
             Last Name:
@@ -103,8 +100,8 @@ function UserProfile({ username, email, firstName, lastName, mobileNumber, gende
         </div>
       ) : (
         <div className='flex flex-col gap-12'>
-          <p><strong>First Name:</strong> {firstName}</p>
-          <p><strong>Last Name:</strong> {lastName}</p>
+          <p><strong>Full Name:</strong> {fullname}</p>
+          
           <p><strong>Username:</strong> {username}</p>
           <p><strong>Email:</strong> {email}</p>
           
