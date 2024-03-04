@@ -25,3 +25,4 @@ yarn-error.log*
 __pycache__/
 node_modules/
 .env
+*.sqlite3
