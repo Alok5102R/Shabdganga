@@ -17,7 +17,7 @@ function App() {
 
       async function fetchData() {
         try {
-          const res = await fetch('http://127.0.0.1:8000/books/api/userapi/	');
+          const res = await fetch('http://127.0.0.1:8000/books/api/profileapi/	');
           const apiData = await res.json();
           setData(apiData);
 
@@ -34,10 +34,14 @@ function App() {
         console.log(data); 
       }, [data]); 
 
-      const username = data.map((item)=> item.username)
-      const fullname = data.map((item)=> item.fullname)
-      const email = data.map((item)=> item.email)
-      
+      const username = data.map((item)=> item.user.username)
+      const fullname = data.map((item)=> item.fullName)
+      const email = data.map((item)=> item.user.email)
+      const country = data.map((item)=>item.country)
+      const gender = data.map((item)=>item.gender)
+      const date = data.map((item)=>item.user.date_joined)
+      const actype = data.map((item)=>item.accountType)
+
 
 
 
@@ -71,7 +75,7 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/SignUp" element={<SignUp/>} />
         <Route path="/UploadBooks" element={<UploadBook/>} />
-        <Route path="/UserProfile" element={<UserProfile username={username} email={email} fullname={fullname}/>} />
+        <Route path="/UserProfile" element={<UserProfile username={username} email={email} gender={gender}  date={date} actype={actype} fullname={fullname} country={country}/>} />
         <Route path="/FAQ" element={<FAQ/>} />
         <Route path="/UploadBook" element={<UploadBook/>} />
         <Route path="/ManageBooks" element={<ManageBooks/>} />

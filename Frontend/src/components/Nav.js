@@ -17,7 +17,7 @@ function Nav({setIsModalOpen,username}) {
                     <div className="flex items-center">
                         {/* Logo */}
                         {/* <a href="" className="text-white font-bold text-6xl mr-4" onClick={()=>navigate("/")}><HiOutlineBookOpen /></a> */}
-                        <img src={logo} alt="User" className=" w-80 h-20 object-cover  relative left-[-40px]" onClick={()=>navigate("/UserProfile")}/>
+                        <img src={logo} alt="User" className=" w-80 h-20 object-cover  relative left-[-40px]" onClick={()=>navigate("/")}/>
 
                         {/* Navbar links */}
                     
