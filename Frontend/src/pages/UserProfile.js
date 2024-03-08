@@ -110,8 +110,8 @@ function UserProfile({ username, email, fullname, country, gender, actype, date 
 
                     {/* right side */}
             <div className='flex flex-col font-serif  text-1xl gap-6 mt-8 '>
-                <div className='border-4 w-[180px] h-[200px] text-center '>
-                    {selectedAvatar && <img src={selectedAvatar} alt="Selected Avatar" className=' w-[180px] h-[200px]' />}
+                <div className=' w-[180px] h-[200px] text-center '>
+                    {selectedAvatar && <img src={selectedAvatar} alt="Selected Avatar" className=' w-[180px] h-[190px] border-gray-500 border-2' />}
                 </div>
                 <button className='rounded text-black-700  bg-gray-400' onClick={() => setIsModalOpen(true)}>Choose Avatar</button>
                 <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" onClick={handleEditClick}>Edit Details</button>
