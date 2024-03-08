@@ -33,7 +33,7 @@ const Slider = ({ images }) => {
 
 
   return (
-    <div className="relative w-full h-64 overflow-hidden">
+    <div className="relative w-full h-36 overflow-hidden">
       <div
         className="absolute flex transition-transform duration-500"
         style={{

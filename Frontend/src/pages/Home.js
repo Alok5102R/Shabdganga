@@ -35,9 +35,8 @@ function Home() {
   return (
     <div className="container mx-auto ">
     
-      {/* <Slider images={images} />
-      <HomeContent/> */}
-     <HomeContent/>
+      <Slider images={images} />
+      <HomeContent/>
      
      
      
