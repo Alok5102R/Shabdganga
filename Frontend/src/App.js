@@ -67,6 +67,7 @@ function App() {
       }
       
       
+        {/* NAVBAR buttons */}
 
       <Nav setIsModalOpen={setIsModalOpen} username={username} />
 
