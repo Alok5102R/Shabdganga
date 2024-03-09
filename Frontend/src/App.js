@@ -17,7 +17,7 @@ function App() {
 
       async function fetchData() {
         try {
-          const res = await fetch('http://127.0.0.1:8000/books/api/profileapi/	');
+          const res = await fetch('http://127.0.0.1:8000/books/api/userprofileapi/	');
           const apiData = await res.json();
           setData(apiData);
 
