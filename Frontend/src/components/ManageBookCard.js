@@ -6,7 +6,7 @@ function ManageBookCard() {
     const navigate = useNavigate();
   return (
     <div className='p-4'>
-        <div className='flex flex-col gap-4 w-[18%] p-2 justify-center items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
+        <div className='manage-book flex flex-col gap-4 w-[18%] p-2 justify-center items-center shadow-[0_3px_10px_rgb(0,0,0,0.2)]'>
         <img src={img} alt=''
             className='t h-48 w-40'
         />

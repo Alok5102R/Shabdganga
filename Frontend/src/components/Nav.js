@@ -12,7 +12,7 @@ function Nav({setIsModalOpen,username}) {
     const navigate = useNavigate();
   return (
     <div>
-         <nav className="bg-gray-900 p-4 font-serif">
+         <nav className="bg-gray-900 p-2 font-serif">
                 <div className=" nav-lg  mx-auto flex justify-between items-center">
                     <div className="flex items-center">
                         {/* Logo */}

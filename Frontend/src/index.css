@@ -14,6 +14,33 @@
     display: none;
     
   }
+
+  .profile{
+    display: flex;
+    flex-direction: column-reverse;
+    
+  }
+  .profile-btns{
+    width: 200px;
+    text-align: center;
+    margin-left: 100px;
+  }
+  .details{
+    transform: scale(0.7);
+    margin-left: -50px;
+  }
+
+  .manage-book{
+    width: 200px;
+    transform: scale(0.8);
+    margin-left: 12%;
+    
+  }
+  .manage-box{
+    align-items: center;
+    justify-items: center;
+  
+  }
   }
 
   .modal,.modal-avatar {
