@@ -4,6 +4,7 @@ from rest_framework import viewsets
 from django.contrib.auth.models import User
 from .models import Profile, Book, Author, Language, Genre
 from . import serializers
+from django.contrib.auth import authenticate, login
 # Create your views here.
 
 class UserViewset(viewsets.ModelViewSet):
@@ -39,3 +40,14 @@ class GenreViewset(viewsets.ModelViewSet):
 
 def home(request):
     return HttpResponse("Hello")
+
+def signin(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+
+    user = authenticate(request, username=username, password=password)
+
+    if user is not None:
+        login(request, user)
+    
+    return "Logged In"
