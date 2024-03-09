@@ -16,6 +16,8 @@ booksrouter.register(r'genreapi',views.GenreViewset)
 
 urlpatterns = [
     path('',views.home,name='home'),
+    path('signup',views.signup,name='signup'),
+
 
     path('api/',include(booksrouter.urls))
 ]
