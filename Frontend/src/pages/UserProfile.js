@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from '../components/Avatar';
 import userimg from '../images/dummy-img.png';
@@ -12,19 +12,59 @@ function UserProfile({ username, email, fullname, country, gender, actype, date 
     const [newFullName, setNewFullName] = useState(fullname);
     const [newCountry, setNewCountry] = useState(country);
     const [newGender, setNewGender] = useState(gender);
+    const [csrfToken, setCsrfToken] = useState('');
+
+    useEffect(() => {
+        const fetchCsrfToken = async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/books/api/userprofileapi/');
+                if (response.ok) {
+                    const data = await response.json();
+                    setCsrfToken(data.csrfToken);
+                } else {
+                    console.error('Failed to fetch CSRF token');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+        fetchCsrfToken();
+    }, []);
 
     const handleEditClick = () => {
         setIsEditing(true);
     };
+    const handleSaveClick = async () => {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/books/api/userprofileapi/2/', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken,
+                },
+                body: JSON.stringify({
+                    username: newUsername,
+                    email: newEmail,
+                    fullname: newFullName,
+                    country: newCountry,
+                    gender: newGender
+                }),
+            });
 
-    const handleSaveClick = () => {
-        // Here you can add your logic to save the updated information, e.g., make an API call
-        // After saving, you can set isEditing to false to exit the editing mode
-        setIsEditing(false);
+            if (response.ok) {
+                setIsEditing(false);
+                window.alert('Profile updated');
+            } else {
+                console.error('Failed to update user profile');
+                window.alert('Failed to update user profile');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred while updating user profile');
+        }
     };
 
     const handleCancelClick = () => {
-        // If the user cancels editing, revert changes to the original values
         setNewUsername(username);
         setNewEmail(email);
         setNewFullName(fullname);
@@ -56,8 +96,8 @@ function UserProfile({ username, email, fullname, country, gender, actype, date 
     const navigate = useNavigate();
 
     const handleImageSelect = (img) => {
-          setSelectedAvatar(img); // Set selected avatar in state
-          setIsModalOpen(false); // Close the modal after selecting an image
+        setSelectedAvatar(img);
+        setIsModalOpen(false);
     };
 
     return (

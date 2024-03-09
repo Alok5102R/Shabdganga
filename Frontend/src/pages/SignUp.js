@@ -35,7 +35,7 @@ function SignUp() {
 
     // Example: sending data using fetch with CSRF token
     try {
-      const response = await fetch('http://127.0.0.1:8000/signup', {
+      const response = await fetch('http://127.0.0.1:8000/books/api/userapi/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ function SignUp() {
       
     }
   };
-
+ 
   return (
     <div className='flex flex-row justify-between items-center bg-gray-200'>
       {/* left side --> Form */}
