@@ -36,7 +36,7 @@ function SignUp() {
     // Example: sending data using fetch with CSRF token
     try {
       const response = await fetch('http://127.0.0.1:8000/signup', {
-        method: 'PUT',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'X-CSRFToken': csrfToken,
