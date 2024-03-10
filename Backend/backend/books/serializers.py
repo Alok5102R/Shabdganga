@@ -5,7 +5,7 @@ from rest_framework import serializers
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username','email','date_joined']
+        fields = ['username','email','date_joined', 'password']
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,7 +16,13 @@ class UserProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     class Meta:
         model = Profile
-        fields = "__all__"
+        fields = ['accountType','user']
+
+    def create(self, validated_data):
+        user_data = validated_data.pop('user')
+        user = User.objects.create(**user_data)
+        profile = Profile.objects.create(user=user, **validated_data)
+        return profile
 
 class BookSerializer(serializers.ModelSerializer):
     class Meta:

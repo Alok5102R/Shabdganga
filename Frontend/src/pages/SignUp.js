@@ -27,15 +27,17 @@ function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
-      username: e.target.username.value,
-      email: e.target.email.value,
-      password: e.target.password.value,
-      userType: document.querySelector('input[name="userType"]:checked').value
+      "user":{
+        "username": e.target.username.value,
+        "email": e.target.email.value,
+        "password": e.target.password.value,
+      },
+      "accountType": document.querySelector('input[name="userType"]:checked').value
     };
 
     // Example: sending data using fetch with CSRF token
     try {
-      const response = await fetch('http://127.0.0.1:8000/books/api/userapi/', {
+      const response = await fetch('http://127.0.0.1:8000/books/api/userprofileapi/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,18 +47,12 @@ function SignUp() {
       });
 
       if (response.ok) {
-        // Success - do something here (e.g., redirect to a success page)
         window.alert('Signed up');
-        console.log('Signup successful');
-        // Optionally, you can reset the form fields here
       } else {
-        // Handle errors here
-        console.error('Signup failed');
         window.alert('Signed up failed');
       }
     } catch (error) {
       console.error('Error:', error);
-      
     }
   };
  
@@ -68,11 +64,11 @@ function SignUp() {
           <h2 className="text-5xl font-semibold font-serif mb-20">Sign Up</h2>
           <div className="mb-4 flex gap-6">
             <div>
-              <input type="radio" id="author" name="userType" required value="author"/>
+              <input type="radio" id="author" name="userType" required value="Author"/>
               <label htmlFor="author">Author</label>
             </div>
             <div>
-              <input type="radio" id="reader" name="userType" required value="reader"/>
+              <input type="radio" id="reader" name="userType" required value="Reader"/>
               <label htmlFor="reader">Reader</label>
             </div>
           </div>
