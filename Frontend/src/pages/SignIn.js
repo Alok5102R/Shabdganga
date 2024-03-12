@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import img from '../images/img-signup.png';
-import sha256 from 'crypto-js/sha256';
+import { Form } from 'react-router-dom';
 
-function SignUp() {
+function SignIn() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -27,67 +27,45 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = {
-      "user":{
-        "username": e.target.username.value,
-        "email": e.target.email.value,
-        "password": e.target.password.value,
-      },
-      "accountType": document.querySelector('input[name="userType"]:checked').value
-    };
-
-    // const formData = new FormData();
-    // formData.append("username", e.target.username.value);
-    // formData.append("email", e.target.email.value);
-    // formData.append("password", e.target.password.value);
-    // formData.append("accountType",document.querySelector('input[name="userType"]:checked').value);
-
-
-
-
+    const formData = new FormData();
+    formData.append('username',e.target.username.value);
+    formData.append('password',e.target.password.value);
+    formData.append('csrfmiddlewaretoken','VLmgSG13Tc4QODT69E9aN2QSpqIxhCJu');
+    console.log(e.target.username.value);
+    console.log(formData);
 
     // Example: sending data using fetch with CSRF token
     try {
-      const response = await fetch('http://127.0.0.1:8000/books/api/userprofileapi/', {
+      const response = await fetch('http://127.0.0.1:8000/books/signin', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': csrfToken,
+          // 'Content-Type': 'application/json',
+          'X-CSRFToken': 'VLmgSG13Tc4QODT69E9aN2QSpqIxhCJu',
         },
-        body: JSON.stringify(formData),
+        body: formData
       });
 
       if (response.ok) {
-        window.alert('Signed up');
+        const sessionCookie1 = response.headers.get('Set-Cookie');
+        // Store session cookie for future requests
+        document.cookie = sessionCookie1;
+        window.alert('Signed In');
       } else {
-        window.alert('Signed up failed');
+        window.alert('Sig in failed');
       }
     } catch (error) {
       console.error('Error:', error);
     }
   };
- 
+
   return (
     <div className='flex flex-row justify-between items-center bg-gray-200'>
       {/* left side --> Form */}
       <div className='relative w-[30%] p-6 m-20 mt-12'>
         <form onSubmit={handleSubmit}>
-          <h2 className="text-5xl font-semibold font-serif mb-20">Sign Up</h2>
-          <div className="mb-4 flex gap-6">
-            <div>
-              <input type="radio" id="author" name="userType" required value="Author"/>
-              <label htmlFor="author">Author</label>
-            </div>
-            <div>
-              <input type="radio" id="reader" name="userType" required value="Reader"/>
-              <label htmlFor="reader">Reader</label>
-            </div>
-          </div>
+          <h2 className="text-5xl font-semibold font-serif mb-20">Sign In</h2>
           <div className="mb-4">
             <input type="text" id="username" name="username" className="border-gray-300 border-b-4 rounded-md w-full px-3 py-4 focus:border-b-4 focus:border-blue-500 outline-none" placeholder="Username" required/>
-          </div>
-          <div className="mb-4">
-            <input type="email" id="email" name="email" className="border-gray-300 border-b-4 rounded-md w-full px-4 py-3 focus:border-b-4 focus:border-blue-500 outline-none" placeholder="Email" required/>
           </div>
           <div className="mb-4">
             <div className="relative">
@@ -98,11 +76,7 @@ function SignUp() {
             </div>
           </div>
           <div className="mb-4">
-            <input type={showPassword ? 'text' : 'password'} id="cpassword" name="cpassword" value={confirmPassword} onChange={handleConfirmPasswordChange} className="border-gray-300 border-b-4 rounded-md w-full px-4 py-3 focus:border-b-4 focus:border-blue-500 outline-none" placeholder="Confirm Password" required minLength={8}/>
-          </div>
-          {!passwordMatch && confirmPassword !== '' && <p className="text-red-500">Passwords do not match</p>}
-          <div className="mb-4">
-            <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors">Sign Up</button>
+            <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors">Sign In</button>
           </div>
         </form>
       </div>
@@ -117,4 +91,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default SignIn;
