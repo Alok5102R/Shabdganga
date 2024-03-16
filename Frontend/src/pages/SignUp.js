@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import img from '../images/img-signup.png';
-import sha256 from 'crypto-js/sha256';
+
 
 function SignUp() {
   const [password, setPassword] = useState('');
