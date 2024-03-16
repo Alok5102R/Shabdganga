@@ -1,12 +1,18 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.exceptions import AuthenticationFailed
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from django.contrib.auth.models import User
 from .models import Profile, Book, Author, Language, Genre
 from . import serializers
 from django.contrib.auth import authenticate, login
-import json
 from django.views.decorators.csrf import csrf_exempt
+from django.middleware.csrf import get_token
+import jwt, datetime
+from django.conf import settings
+
 
 # Create your views here.
 
@@ -18,9 +24,32 @@ class ProfileViewset(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = serializers.ProfileSerializer
 
+# !!! Currenrly not in use
+class SigninViewset(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = serializers.SigninSerializer
+
+    def create(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            login(request, user)
+            return Response({'message': 'Sign-in successful'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'message': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
 class UserProfileViewset(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = serializers.UserProfileSerializer
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        response = Response("Registered", status=status.HTTP_201_CREATED)
+        return response
 
 class BookViewset(viewsets.ModelViewSet):
     queryset = Book.objects.all()
@@ -44,39 +73,57 @@ class GenreViewset(viewsets.ModelViewSet):
 def home(request):
     return HttpResponse("Hello")
 
+def whoami(request):
+    username = request.user.username
+    print("Hello")
+    print(request.user)
+    return JsonResponse({'message': username})
 
-def signup(request):
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    # password2 = request.POST.get('password')
-    email = request.POST.get('email')
-    accountType = request.POST.get('accountType') # Author/Reader
 
+def csrf_token_view(request):
+    csrf_token = get_token(request)
+    return JsonResponse({'csrfToken': csrf_token})
+
+class LoginView(APIView):
+    allowed_methods = ['POST']
+    def post(self,request):
+        username = request.data['username']
+        password = request.data['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            payload = {
+                'username': user.username,
+                'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60),
+                'iat': datetime.datetime.utcnow()
+            }
+            token = jwt.encode(payload, 'secret', algorithm='HS256')
+            response = Response()
+            # response.set_cookie('jwt', token, httponly=True, samesite="None", secure=False)
+            response.data = {"jwt":token,"User":username,"Login":"Success"}
+            return response
+        else:
+            raise AuthenticationFailed("User not found")
     
-    usernew = User.objects.create_user(username=username, password=password, email=email)
-    usernew.save()
-    profilenew = Profile.objects.create(user=usernew, accountType=accountType)
-    profilenew.save()
-    return JsonResponse({'message': 'User registered successfully'})
-
-
-
-
-@csrf_exempt
-def signin(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    print(username)
-    print(password)
-
-    user = authenticate(request, username=username, password=password)
-    print(user)
-    if user is not None:
-        login(request, user)
-        print("Success in")
-        return JsonResponse({'message': 'Success Sign in.'})
+class UserView(APIView):
+    allowed_methods = ['POST']
+    def post(self, request):
+        response = get_user(request)
+        return response
     
-    else:
-        JsonResponse({'message': 'Password does not match.'})
-    return HttpResponse("Success")
+
+
+
+# ================== General Functions ==================    
+    
+# Get username from jwt Token    
+def get_user(request):
+    jwtoken = request.data['jwt']
+    token = ""
+    try:
+        token = jwt.decode(jwtoken, 'secret', algorithms=['HS256'])
+        return JsonResponse({"username":token['username']})
+    except:
+        raise AuthenticationFailed("Invalid Token")
+
+
     

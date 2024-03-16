@@ -11,14 +11,17 @@ booksrouter.register(r'bookapi',views.BookViewset)
 booksrouter.register(r'authorapi',views.AuthorViewset)
 booksrouter.register(r'languageapi',views.LanguageViewset)
 booksrouter.register(r'genreapi',views.GenreViewset)
+booksrouter.register(r'signinapi',views.SigninViewset)
+
 
 
 
 urlpatterns = [
     path('',views.home,name='home'),
-    path('signup',views.signup,name='signup'),
-    path('signin',views.signin,name='signin'),
-
+    path('whoami',views.whoami,name='whoami'),
+    path('csrf-token/', views.csrf_token_view, name='csrf_token'),
+    path('login',views.LoginView.as_view()),
+    path('user',views.UserView.as_view()),
 
 
     path('api/',include(booksrouter.urls))

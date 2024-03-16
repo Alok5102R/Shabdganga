@@ -2,6 +2,44 @@ import React, { useState } from 'react';
 import img from '../images/img-signup.png';
 import { Form } from 'react-router-dom';
 
+// Get JWT Token from cookie
+const getJwtTokenFromCookie = () => {
+  const cookies = document.cookie.split('; ');
+  for (const cookie of cookies) {
+      const [name, value] = cookie.split('=');
+      if (name === 'jwt') { 
+          return value;
+      }
+  }
+  return null;
+};
+const jwt = getJwtTokenFromCookie();
+
+// Check current logged in user
+function callacv() {
+  var formnew = new FormData();
+  formnew.append('jwt', jwt);
+  return fetch('http://127.0.0.1:8000/books/user', {
+    method: 'POST',
+    body: formnew,
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    currentLoggedInUser = data.username;
+    return data.username;
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    return null; // Or handle the error in a different way
+  });
+}
+var currentLoggedInUser = await callacv();
+
 function SignIn() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -34,22 +72,25 @@ function SignIn() {
     console.log(e.target.username.value);
     console.log(formData);
 
-    // Example: sending data using fetch with CSRF token
     try {
-      const response = await fetch('http://127.0.0.1:8000/books/signin', {
+      const response = await fetch('http://127.0.0.1:8000/books/login', {
         method: 'POST',
         headers: {
           // 'Content-Type': 'application/json',
           'X-CSRFToken': 'VLmgSG13Tc4QODT69E9aN2QSpqIxhCJu',
         },
-        body: formData
+        body: formData,
+        credentials: 'include'
       });
 
       if (response.ok) {
-        const sessionCookie1 = response.headers.get('Set-Cookie');
-        // Store session cookie for future requests
-        document.cookie = sessionCookie1;
         window.alert('Signed In');
+        response.json().then(data => {
+          const jwtToken = data.jwt;
+          document.cookie = `jwt=${jwtToken}; path=/;`;
+        }).catch(error => {
+          console.error('Error parsing response as JSON:', error);
+        });
       } else {
         window.alert('Sig in failed');
       }
