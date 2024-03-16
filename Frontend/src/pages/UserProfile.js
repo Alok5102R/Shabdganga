@@ -144,7 +144,7 @@ function UserProfile({ username, email, fullname, country, gender, actype, date 
                         <p><strong>Country:</strong> {country}</p>
                         <p><strong>Gender:</strong> {gender}</p>
                         <p><strong>Account Type:</strong> {actype}</p>
-                        <p><strong>Timestamp:</strong> {date.slice(0,-17)}</p>
+                        <p><strong>Timestamp:</strong> {date}</p>
                         <button className="bg-blue-500  text-white px-4 w-36 py-2 rounded hover:bg-blue-600" onClick={handleEditClick}>Edit Details</button>
 
                     </div>

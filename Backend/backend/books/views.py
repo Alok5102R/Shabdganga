@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from rest_framework import viewsets, status
+from django.core.serializers import serialize
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -109,6 +110,26 @@ class UserView(APIView):
     def post(self, request):
         response = get_user(request)
         return response
+    
+class LoggedInUser(APIView):
+    def post(self, request):
+        username = request.data['username']
+        userdetail = User.objects.get(username=username)
+        userprofile = Profile.objects.get(user=userdetail)
+        # userdetail = serialize('js',userdetail)
+        return JsonResponse({
+            "username":userdetail.username,
+            "email":userdetail.email,
+            "timeStamp":str(userdetail.date_joined)[:10],
+            "fullName":userprofile.fullName,
+            "country":userprofile.country,
+            "gender":userprofile.gender,
+            "accountType":userprofile.accountType,
+            "avatar": userprofile.avatar
+            })
+    
+    def get(self, request):
+        return JsonResponse({"not serving currently":"True"})
     
 
 

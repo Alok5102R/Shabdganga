@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import img from '../images/img-signup.png';
-import { Form } from 'react-router-dom';
+import { Form, Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 // Get JWT Token from cookie
 const getJwtTokenFromCookie = () => {
@@ -35,7 +36,7 @@ function callacv() {
   })
   .catch(error => {
     console.error('Error:', error);
-    return null; // Or handle the error in a different way
+    return null;
   });
 }
 var currentLoggedInUser = await callacv();
@@ -46,6 +47,7 @@ function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordMatch, setPasswordMatch] = useState(true);
   const [csrfToken, setCsrfToken] = useState(''); // Assuming you have CSRF token available
+  const navigate = useNavigate();
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
@@ -85,6 +87,7 @@ function SignIn() {
 
       if (response.ok) {
         window.alert('Signed In');
+        navigate("/");
         response.json().then(data => {
           const jwtToken = data.jwt;
           document.cookie = `jwt=${jwtToken}; path=/;`;

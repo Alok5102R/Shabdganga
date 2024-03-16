@@ -22,6 +22,8 @@ urlpatterns = [
     path('csrf-token/', views.csrf_token_view, name='csrf_token'),
     path('login',views.LoginView.as_view()),
     path('user',views.UserView.as_view()),
+    path('userdetail',views.LoggedInUser.as_view()),
+
 
 
     path('api/',include(booksrouter.urls))

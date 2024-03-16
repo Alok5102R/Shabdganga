@@ -28,7 +28,7 @@ function Nav({setIsModalOpen,username}) {
                         <button className="text-white hover:text-gray-300 mr-4" onClick={() => navigate("/UserProfile")}>{username}</button>
 
                         <button className="text-white hover:text-gray-300 mr-4" onClick={() => navigate("/")}>Home</button>
-                        <button className="text-white hover:text-gray-300 mr-4" onClick={()=>setIsModalOpen(true)}>Sign In</button>
+                        <button className="text-white hover:text-gray-300 mr-4" onClick={()=>navigate("/SignIn")}>Sign In</button>
                         <button className="text-white hover:text-gray-300 mr-4"  onClick={() => navigate("/SignUp")}>Sign Up</button>
                         <button className="text-white hover:text-gray-300 mr-4"  onClick={() => navigate("/FAQ")}>FAQ</button>
                         
