@@ -12,7 +12,8 @@ from django.contrib.auth import authenticate, login
 from django.views.decorators.csrf import csrf_exempt
 from django.middleware.csrf import get_token
 import jwt, datetime
-from django.conf import settings
+from django.db.models import F
+
 
 
 # Create your views here.
@@ -45,12 +46,32 @@ class UserProfileViewset(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = serializers.UserProfileSerializer
 
-    def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        response = Response("Registered", status=status.HTTP_201_CREATED)
-        return response
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        username = self.request.query_params.get('username')
+        print(username)
+        if not username:
+            username = 'alok1'
+        queryset = queryset.filter(user__username=username)
+
+        # = Used to add other values from serializer, if they are not included in viewset yet
+        # queryset = queryset.values('fullName', 'country', 'gender', 'avatar')
+
+        # = Used to add extra fields in query set
+        # queryset = queryset.annotate(
+        # extraField=F('extras'),
+        # )
+
+        return queryset
+    
+    # def create(self, request):
+    #     username = request.data.get('username')
+    #     if not username:
+    #         return Response({'error': 'Username is required'}, status=status.HTTP_400_BAD_REQUEST)
+    #     userdata = User.objects.get(username=username)
+    #     profiledata = Profile.objects.get(user=userdata)
+    #     serializer = self.serializer_class(profiledata)
+    #     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class BookViewset(viewsets.ModelViewSet):
     queryset = Book.objects.all()
