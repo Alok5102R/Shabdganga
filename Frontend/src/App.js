@@ -3,6 +3,7 @@ import Nav from './components/Nav';
 import Home from './pages/Home';
 import { Route, Routes } from 'react-router-dom';
 import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
 import UploadBook from './pages/UploadBook';
 import UserProfile from './pages/UserProfile';
 import FAQ from './pages/FAQ';
@@ -71,6 +72,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/SignIn" element={<SignIn />} />
         <Route path="/UploadBooks" element={<UploadBook />} />
         <Route path="/UserProfile" element={<UserProfile username={userData ? userData.user.username : null} email={userData ? userData.user.email : null} gender={userData ? userData.gender : null} date={userData ? userData.user.date_joined : null} actype={userData ? userData.accountType : null} fullname={userData ? userData.fullName : null} country={userData ? userData.country : null} />} />
         <Route path="/FAQ" element={<FAQ />} />
