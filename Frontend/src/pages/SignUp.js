@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import img from '../images/img-signup.png';
-import sha256 from 'crypto-js/sha256';
+
 
 function SignUp() {
   const [password, setPassword] = useState('');
@@ -48,7 +48,7 @@ function SignUp() {
 
     // Example: sending data using fetch with CSRF token
     try {
-      const response = await fetch('http://127.0.0.1:8000/books/api/userprofileapi/', {
+      const response = await fetch('http://127.0.0.1:8000/books/api/userapi/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
