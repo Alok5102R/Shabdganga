@@ -8,8 +8,11 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function Nav({setIsModalOpen,username}) {
+function Nav({setIsModalOpen,username,jwt}) {
+ 
+ 
     const navigate = useNavigate();
+   
   return (
     <div>
          <nav className="bg-gray-900 p-2 font-serif">
@@ -23,14 +26,16 @@ function Nav({setIsModalOpen,username}) {
                     
                     </div>
                     <div className="flex items-center gap-8">
-                        <img src={user} alt="User" className="w-10 h-10 rounded-full" onClick={()=>navigate("/UserProfile")}/>
+                     
+                        { jwt==null ? <></>:<div> <img src={user} alt="User" className="w-10 h-10 rounded-full" onClick={()=>navigate("/UserProfile")}/></div> }
                           
                         <button className="text-white hover:text-gray-300 mr-4" onClick={() => navigate("/UserProfile")}>{username}</button>
 
                         <button className="text-white hover:text-gray-300 mr-4" onClick={() => navigate("/")}>Home</button>
-                        <button className="text-white hover:text-gray-300 mr-4" onClick={()=>navigate("/SignIn")}>Sign In</button>
-                        <button className="text-white hover:text-gray-300 mr-4"  onClick={() => navigate("/SignUp")}>Sign Up</button>
-                        <button className="text-white hover:text-gray-300 mr-4"  onClick={() => navigate("/FAQ")}>FAQ</button>
+                       {jwt==null ?<> <button className="text-white hover:text-gray-300 mr-4" onClick={()=>navigate("/SignIn")}>Sign In</button>
+                        <button className="text-white hover:text-gray-300 mr-4" onClick={() => navigate("/SignUp")}>Sign Up</button></>:<>
+                        <button className="text-white hover:text-gray-300 mr-4" onClick={() => navigate("/SignUp")}>Logout</button></>}
+                        <button className="text-white hover:text-gray-300 mr-4" onClick={() => navigate("/FAQ")}>FAQ</button>
                         
                     
                     </div>
@@ -39,7 +44,7 @@ function Nav({setIsModalOpen,username}) {
 
                 {/* for mobile */}
                 <div className='menu lg:hidden flex justify-between'>
-                <a href="#" className="text-white text-6xl"><HiOutlineBookOpen /></a>
+                <button className="text-white text-6xl"><HiOutlineBookOpen /></button>
                 <icon className='text-white text-6xl'><RxHamburgerMenu /></icon>
                 </div>
 
@@ -49,4 +54,4 @@ function Nav({setIsModalOpen,username}) {
   )
 }
 
-export default Nav
+export default Nav;

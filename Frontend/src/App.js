@@ -19,9 +19,12 @@ const getJwtTokenFromCookie = () => {
           return value;
       }
   }
+  
   return null;
+ 
 };
 const jwt = getJwtTokenFromCookie();
+console.log(jwt)
 
 // Check current logged in user
 function callacv() {
@@ -113,7 +116,7 @@ function App() {
 
       {/* NAVBAR buttons */}
       {/* <Nav setIsModalOpen={setIsModalOpen} username={userData ? userData.user.username : null} /> */}
-      <Nav username={userData ? userData.username : null} />
+      <Nav username={userData ? userData.username : null} jwt={jwt}/>
 
       <Routes>
         <Route path="/" element={<Home />} />
