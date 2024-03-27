@@ -49,7 +49,6 @@ class UserProfileViewset(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = super().get_queryset()
         username = self.request.query_params.get('username')
-        print(username)
         if not username:
             username = 'alok1'
         queryset = queryset.filter(user__username=username)
@@ -97,7 +96,6 @@ def home(request):
 
 def whoami(request):
     username = request.user.username
-    print("Hello")
     print(request.user)
     return JsonResponse({'message': username})
 
