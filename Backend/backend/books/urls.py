@@ -5,8 +5,8 @@ from rest_framework import routers
 booksrouter = routers.DefaultRouter()
 
 booksrouter.register(r'userapi',views.UserViewset)
-booksrouter.register(r'profileapi',views.ProfileViewset)
-booksrouter.register(r'userprofileapi',views.UserProfileViewset)
+booksrouter.register(r'profileapi',views.ProfileViewset,basename='profile')
+booksrouter.register(r'userprofileapi',views.UserProfileViewset,basename='userprofile')
 booksrouter.register(r'bookapi',views.BookViewset)
 booksrouter.register(r'authorapi',views.AuthorViewset)
 booksrouter.register(r'languageapi',views.LanguageViewset)
